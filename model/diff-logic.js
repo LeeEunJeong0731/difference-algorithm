@@ -43,5 +43,13 @@ export default function (inputJSONPath, outputJSONPath) {
     differenceWords: [],
   };
 
+  // 3. outputJSONPath 매개변수의 key에 해당하는 정보를 저장
+  const keysToStore = Object.keys(inputJSONData); // inputJSONData의 모든 키를 가져옵니다.
+  //* json의 output은 differences.json의 "operator"와 "operand"이 해당된다.
+
+  keysToStore.forEach((key) => {
+    // outputJSONData 객체에 해당 키와 값을 저장합니다.
+    outputJSONData[key] = inputJSONData[key];
+  });
   return result;
 }
