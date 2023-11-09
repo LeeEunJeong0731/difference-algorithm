@@ -32,6 +32,8 @@ export default function (inputJSONPath, outputJSONPath) {
   const outputJSONData = JSON.parse(fs.readFileSync(outputJSONPath, 'utf8'));
 
   // 2. inputJSONData와 outputJSONData의 value를 비교
+
+  //* result.sameWords와 result.differenceWords 변수를 이용한 비교가 이미 구현되어 있어 inputValues와 outputValues 변수는 사용하지 않는다
   const inputValues = Object.values(inputJSONData);
   const outputValues = Object.values(outputJSONData);
 
@@ -69,9 +71,11 @@ export default function (inputJSONPath, outputJSONPath) {
   });
 
   // 6. 다른 단어가 무엇인지 저장
+  //* === 이 아닌 !== 느낌표를 추가해 다른 것을 판단
   result.differenceWords = Object.keys(inputJSONData).filter((key) => {
     return inputJSONData[key] !== outputJSONData[key];
   });
 
+  //7. 리턴을 통하여 결과값 도출
   return result;
 }
