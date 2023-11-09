@@ -51,5 +51,16 @@ export default function (inputJSONPath, outputJSONPath) {
     // outputJSONData 객체에 해당 키와 값을 저장합니다.
     outputJSONData[key] = inputJSONData[key];
   });
+
+  // 4. differences.json 파일에 필요한 상태값 저장
+  //* fs.writeFileSync 함수를 통해 differences.json 파일의 outputJsonData의 객체를 json으로 저장한다.
+  //* JSON.stringify를 사용하여 json 문자열로 변환한다.
+  //* null, 2은 들여쓰기 'utf8'은 파일의 인코딩을 지정
+  fs.writeFileSync(
+    outputJSONPath,
+    JSON.stringify(outputJSONData, null, 2),
+    'utf8'
+  );
+
   return result;
 }
