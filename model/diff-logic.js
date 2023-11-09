@@ -61,6 +61,17 @@ export default function (inputJSONPath, outputJSONPath) {
     JSON.stringify(outputJSONData, null, 2),
     'utf8'
   );
+  // 5. 같은 단어가 무엇인지 저장
+  //* Object.keys(inputJSONData)를 사용하여 inputJSONData의 모든 키(프로퍼티)를 가져온다
+  //* filter 함수를 사용하여 같은 단어와 다른 단어를 구분하고 result 객체에 저장
+  result.sameWords = Object.keys(inputJSONData).filter((key) => {
+    return inputJSONData[key] === outputJSONData[key];
+  });
+
+  // 6. 다른 단어가 무엇인지 저장
+  result.differenceWords = Object.keys(inputJSONData).filter((key) => {
+    return inputJSONData[key] !== outputJSONData[key];
+  });
 
   return result;
 }
